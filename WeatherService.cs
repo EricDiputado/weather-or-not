@@ -1,28 +1,26 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using WeatherApp;
 
 namespace WeatherApp;
 
 public class WeatherService
 {
-    // It's best practice to create one static HttpClient and reuse it for the application's lifetime.
-    private static readonly HttpClient _httpClient = new();
+    private readonly HttpClient _httpClient;
     private readonly string _apiKey;
 
-    public WeatherService(string apiKey)
+    // We now inject HttpClient and IConfiguration via the constructor.
+    public WeatherService(HttpClient httpClient, IConfiguration configuration)
     {
-        if (string.IsNullOrWhiteSpace(apiKey))
-            throw new ArgumentException("API key must be provided.", nameof(apiKey));
-
-        _apiKey = apiKey;
+        _httpClient = httpClient;
+        _apiKey = configuration["OpenWeather:ApiKey"]
+            ?? throw new InvalidOperationException("API Key not found in configuration.");
     }
 
     public async Task<WeatherResponse?> GetWeatherForCityAsync(string city)
     {
-        if (string.IsNullOrWhiteSpace(city))
-            return null;
-
         try
         {
             // Construct the request URL with the city, API key, and desired units (metric for Celsius).
@@ -36,7 +34,8 @@ public class WeatherService
         catch (HttpRequestException ex)
         {
             // This will catch errors like "404 Not Found" if the city name is invalid.
-            Console.WriteLine($"\nError fetching weather data: {ex.StatusCode} - {ex.Message}");
+            // In a web app, we should log this instead of writing to the console.
+            // For now, we'll just return null and let the UI handle it.
             return null;
         }
     }
