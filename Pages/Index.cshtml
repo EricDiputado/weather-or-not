@@ -1,10 +1,44 @@
 ﻿@page
-@model IndexModel
+@model WeatherOrNot.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Weather or Not</h1>
+    <p>Enter a city to check the weather.</p>
 </div>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form method="post">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" asp-for="City" placeholder="e.g., London">
+                <button class="btn btn-primary" type="submit">Save City</button>
+            </div>
+        </form>
+
+        @if (Model.Weather != null)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Weather in @Model.Weather.CityName</h5>
+                    @foreach (var Weather in Model.Weather.Weather)
+                    {
+                        <p class="card-text text-capitalize">@Weather.Description</p>
+                    }
+                    <p class="card-text"><strong>Temperature:</strong> @Model.Weather.Main.Temperature.ToString("F1") °C</p>
+                    @* <p class="card-text"><strong>Feels Like:</strong> @Model.Weather.Main.FeelsLike.ToString("F1") °C</p> *@
+                    @* <p class="card-text"><strong>Humidity:</strong> @Model.Weather.Main.Humidity %</p> *@
+                </div>
+            </div>
+        }
+        else if (!string.IsNullOrWhiteSpace(Model.City))
+        {
+            <div class="alert alert-danger" role="alert">
+                Could not retrieve weather for "@Model.City". Please check the city name and try again.
+            </div>
+        }
+    </div>
+</div>
+

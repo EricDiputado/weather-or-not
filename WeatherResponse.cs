@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
-using WeatherApp.Models;
+using WeatherOrNot.Models;
 
-namespace WeatherApp;
+namespace WeatherOrNot;
 
 /// <summary>
 /// Represents the overall JSON response from the OpenWeatherMap API.
@@ -14,8 +14,8 @@ public class WeatherResponse
     public string CityName { get; set; } = string.Empty;
 
     [JsonPropertyName("main")]
-    public WeatherApp.Models.MainWeatherData Main { get; set; } = new();
+    public WeatherOrNot.Models.MainWeatherData Main { get; set; } = new();
 
     [JsonPropertyName("weather")]
-    public List<WeatherApp.Models.WeatherInfo> Weather { get; set; } = new();
+    public List<WeatherOrNot.Models.WeatherInfo> Weather { get; set; } = new();
 }

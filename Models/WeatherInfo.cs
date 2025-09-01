@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WeatherApp.Models;
+namespace WeatherOrNot.Models;
 
 // Represents an item in the "weather" array, containing the description.
 public class WeatherInfo
