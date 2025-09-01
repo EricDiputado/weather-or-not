@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WeatherApp;
+namespace WeatherApp.Models.MainWeatherData;
 
 /// <summary>
 /// Represents the overall JSON response from the OpenWeatherMap API.
@@ -17,18 +17,3 @@ public class WeatherResponse
     [JsonPropertyName("weather")]
     public List<WeatherInfo> Weather { get; set; } = new();
 }
-
-// Represents the "main" object in the JSON, containing temperature info.
-public class MainWeatherData
-{
-    [JsonPropertyName("temp")]
-    public float Temperature { get; set; }
-}
-
-// Represents an item in the "weather" array, containing the description.
-public class WeatherInfo
-{
-    [JsonPropertyName("description")]
-    public string Description { get; set; } = string.Empty;
-}
-
