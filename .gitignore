@@ -1,0 +1,79 @@
+# Visual Studio 2015/2017/2019/2022
+.vs/
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+*.opendata
+*.VC.opendata
+*.sdf
+*.jfm
+*.rsuser
+*.tlog
+*.testrunconfig
+*.trx
+*.vsp
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ee]xe/
+[Ll]ib/
+[Ll]og/
+[Tt]emp/
+[Tt]mp/
+[Ww]wwroot/
+[Ii]nstaller/
+[Aa]rchive/
+[Rr]esults/
+[Pp]ublish/
+[Dd]eploy/
+[Ss]etup/
+[Bb]uild/
+[Oo]utput/
+[Dd]ist/
+
+# Packages
+*.nupkg
+[Pp]ackages/
+**/packages/*.nupkg
+[Rr]eports/
+[Ss]napshots/
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esults/
+[Bb]uild[Ll]og.htm
+[Bb]uild[Ll]og.txt
+
+# Rider
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# SonarQube
+.sonarqube/
+.sonar/
+
+# Azure Functions
+.funcignore
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# EditorConfig
+.editorconfig
+
+# Misc
+*.bak
+*.orig
+*.pyc
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
